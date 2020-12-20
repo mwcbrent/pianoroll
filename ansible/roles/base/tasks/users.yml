@@ -1,0 +1,24 @@
+---
+- name: Make sure we have a 'www-data' group
+  group:
+    name: www-data
+    state: present
+
+- name: Create new user
+  become: yes
+  become_method: sudo
+  user:
+    name: "{{ base_user }}"
+    groups: "www-data"
+    shell: /bin/bash
+    append: yes
+    createhome: yes
+
+- name: Creates .ssh directory for site_user
+  become: yes
+  become_method: sudo
+  file:
+    path: "/home/{{ base_user }}/.ssh/"
+    state: directory
+    owner: "{{ base_user }}"
+    group: "{{ base_group }}"

@@ -1,0 +1,67 @@
+---
+- name: Delete repo if exists
+  become: yes
+  become_user: "{{ base_user }}"
+  file:
+    state: absent
+    path: "{{ git_checkout_dir }}/"
+
+- name: Checkout repo
+  become: yes
+  become_user: "{{ base_user }}"
+  git:
+    repo: "{{ git_repo_url }}"
+    version: "{{ git_branch }}"
+    dest: "{{ git_checkout_dir }}"
+    accept_hostkey: True
+    key_file: "{{ ssh_path }}/.ssh/id_rsa.github"
+  notify:
+    - restart gunicorn
+    - restart celery
+
+- name: Delete git files
+  become: yes
+  become_user: "{{ base_user }}"
+  file:
+    state: absent
+    path: "{{ git_checkout_dir }}/.git"
+
+
+- name: Copy code directory to app root
+  become: yes
+  become_user: "{{ base_user }}"
+  command: cp -r -T . "{{ app_path }}"
+  args:
+    chdir: "{{ git_checkout_dir }}"
+  notify:
+    - restart gunicorn
+    - restart celery
+
+- name: Copy environment file to project root
+  become: yes
+  become_user: "{{ base_user }}"
+  copy:
+    src: "{{ app_name }}.env"
+    dest: "{{ app_path }}/.env"
+  notify:
+    - restart gunicorn
+    - restart celery
+
+- name: Install pip requirements
+  become: yes
+  become_user: "{{ base_user }}"
+  pip:
+    chdir: "{{ app_path }}webserver/"
+    requirements: requirements.txt
+    virtualenv: "{{ venv_path }}"
+    virtualenv_python: python3.7
+  notify:
+    - restart gunicorn
+    - restart celery
+
+- name: Make sure server file is executable
+  become: yes
+  become_user: "{{ base_user }}"
+  file:
+    path: "{{ app_path }}/webserver/webserver.py"
+    mode: "+x"

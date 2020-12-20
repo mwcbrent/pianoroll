@@ -1,5 +1,7 @@
 <!doctype html>
 <head>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 </head>
@@ -48,6 +50,9 @@
           <a href="/playlist" class="border-transparent  hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
             Queue
           </a>
+          <a href="/stop" class="border-transparent  hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+            Stop
+          </a>
         </div>
       </div>
       
@@ -76,7 +81,7 @@
   <header>
     {% block header %}{% endblock %}
   </header>
-  <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 px-4">
     {% block content %}{% endblock %}
   </div>
 </section>

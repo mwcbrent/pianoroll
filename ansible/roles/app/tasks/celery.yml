@@ -1,0 +1,11 @@
+---
+- name: Copy celery config
+  become: yes
+  become_method: sudo
+  template:
+    src: celery.conf.j2
+    dest: /etc/systemd/system/celery.service
+    mode: 0644
+  notify:
+    - restart celery
+

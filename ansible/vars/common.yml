@@ -1,0 +1,15 @@
+---
+user: "{{ ansible_user }}"
+base_user: 'pi'
+base_group: 'pi'
+base_path: '/srv/www/pianoroll' # path to base directory
+git_checkout_dir: "{{ base_path }}/repo" # path to where repo is checked out
+app_path: "{{ base_path }}/app" # path to where code runs
+venv_path: "{{ base_path }}/venv" #path to where venv exists
+ssh_path: "/home/{{ base_user }}"
+server_name: 'raspberrypi.local'
+
+app_name: 'pianoroll'
+git_repo_url: "https://github.com/mwcbrent/pianoroll.git"
+git_branch: 'master'
+gunicorn_workers: 1

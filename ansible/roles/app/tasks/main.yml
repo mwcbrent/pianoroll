@@ -1,0 +1,5 @@
+---
+- include: gunicorn.yml
+- include: celery.yml
+- include: nginx.yml
+- include: flask.yml

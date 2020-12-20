@@ -1,0 +1,16 @@
+---
+- name: Install system packages
+  become: yes
+  become_method: sudo
+  apt:
+    name: "{{ packages }}"
+    state: present
+    update_cache: yes
+
+- name: Install pip packages.
+  become: yes
+  become_method: sudo
+  pip:
+    name: "{{ pip_packages }}"
+    executable: pip3
+    state: present

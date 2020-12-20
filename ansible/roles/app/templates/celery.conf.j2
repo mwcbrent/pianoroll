@@ -1,0 +1,12 @@
+[Unit]
+Description=celery daemon
+After=network.target
+
+[Service]
+User={{ base_user }}
+Group={{ base_group }}
+WorkingDirectory={{ app_path }}/webserver
+ExecStart={{ venv_path }}/bin/celery -A webserver.celery worker --loglevel=DEBUG --concurrency=1
+
+[Install]
+WantedBy=multi-user.target

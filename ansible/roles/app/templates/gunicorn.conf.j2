@@ -1,0 +1,18 @@
+[Unit]
+Description=gunicorn daemon
+Requires=gunicorn.socket
+After=network.target
+
+[Service]
+User={{ base_user }}
+Group={{ base_group }}
+WorkingDirectory={{ app_path }}/webserver
+ExecStart={{ venv_path }}/bin/gunicorn \
+          --timeout 30 \
+          --log-level INFO \
+          --workers {{ gunicorn_workers }} \
+          --bind unix:/run/gunicorn.sock \
+          webserver:app
+
+[Install]
+WantedBy=multi-user.target

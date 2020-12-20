@@ -1,0 +1,16 @@
+packages:
+  - git
+  - build-essential
+  - libssl-dev
+  - libffi-dev
+  - python3.7-dev
+  - python3-pip
+  - python-pip
+  - libpq-dev
+  - nginx
+  - redis
+  - python3.7-venv
+
+pip_packages:
+  - virtualenv
+  - psycopg2

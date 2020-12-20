@@ -1,0 +1,14 @@
+---
+- name: Create app directories
+  become: yes
+  become_method: sudo
+  file:
+    path: "{{ item[0] }}/{{ item[1] }}"
+    state: directory
+    owner: "{{ base_user }}"
+    group: "{{ base_group }}"
+    mode: 0750
+    recurse: yes
+  with_nested:
+    - "{{ app_path }}"
+    - ['app', 'logs', 'logs/processes']

@@ -1,0 +1,20 @@
+---
+- name: Copy gunicorn socket
+  become: yes
+  become_method: sudo
+  template:
+    src: gunicorn.socket.j2
+    dest: /etc/systemd/system/gunicorn.socket
+    mode: 0644
+  notify:
+    - restart gunicorn
+
+- name: Copy gunicorn config
+  become: yes
+  become_method: sudo
+  template:
+    src: gunicorn.conf.j2
+    dest: /etc/systemd/system/gunicorn.service
+    mode: 0644
+  notify:
+    - restart gunicorn

@@ -1,0 +1,26 @@
+- name: restart gunicorn
+  become: yes
+  become_method: sudo
+  systemd:
+    name: gunicorn
+    daemon_reload: yes
+    state: restarted
+    enabled: yes
+
+- name: restart celery
+  become: yes
+  become_method: sudo
+  systemd:
+    name: celery
+    daemon_reload: yes
+    state: restarted
+    enabled: yes
+
+- name: restart nginx
+  become: yes
+  become_method: sudo
+  systemd:
+    name: nginx
+    daemon_reload: yes
+    state: restarted
+    enabled: yes
