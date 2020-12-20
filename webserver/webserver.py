@@ -74,7 +74,7 @@ def remove():
 
 @app.route('/play-genre/<genre>')
 def play_genre(genre):
-    play_random(f"../songs/{str(genre).lower()}", 10)
+    play_random(f"../songs/{str(genre)}", 10)
     return redirect('/')
 
 
