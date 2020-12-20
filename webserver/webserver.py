@@ -17,11 +17,9 @@ app = Flask(__name__)
 
 def play_random(dir, num_songs):
     files = os.listdir(dir)
-    playlist = []
     for x in range(num_songs):
         rand_index = random.randint(0, files.__len__() - 1)
-        playlist.append(os.path.join(dir, files[rand_index]))
-    print(playlist)
+        playsong.delay(os.path.join(dir, files[rand_index]))
 
 
 @app.route("/")
