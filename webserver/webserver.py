@@ -36,6 +36,7 @@ def playsong(filename):
     midifile = MidiFile(filename)
     with mido.open_output(portname) as output:
         output.reset()
+        print(f"Playing: f{filename}")
         for message in midifile.play():
             if isinstance(message, Message):
                 output.send(message)
