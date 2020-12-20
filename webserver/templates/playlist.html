@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="text-xl py-4 font-bold">Queue</h1>
+
+{% for task in tasks %}
+<a href="/remove?taskid={{ task.id }} ">{{ task.args }}</a>
+{% endfor %}
+
+{% endblock %}
