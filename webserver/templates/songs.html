@@ -36,21 +36,4 @@
       </a>
     </li>
   </ul>
-{##}
-{#{% for dir in dirs %}#}
-{#	<ul class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">#}
-{#	{% for file in dir.2 %}#}
-{#		<li class="col-span-1 bg-white rounded-lg shadow divide-y divide-gray-200">#}
-{#			<a href="/play?filename={{ dir.0 }}/{{ file }}" class="w-full flex items-center justify-between p-6 space-x-6">#}
-{#				<div class="flex items-center justify-start truncate">#}
-{#					<div>#}
-{#						<svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path></svg>#}
-{#					</div>#}
-{#					<div class="truncate">{{ file }}</div>#}
-{#				</div>#}
-{#			</a>#}
-{#		</li>#}
-{#	{% endfor %}#}
-{#	</ul>#}
-{% endfor %}
 {% endblock %}
